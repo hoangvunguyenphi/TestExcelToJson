@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Advanced Search</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="/bower_components/Ionicons/css/ionicons.min.css">
+
+    <!-- Select2 -->
+    <link rel="stylesheet" href="/bower_components/select2/dist/css/select2.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="/dist/css/skins/_all-skins.min.css">
+
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+    <!-- bootstrap datepicker -->
+    <link rel="stylesheet" href="/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <!-- Bootstrap time Picker -->
+    <link rel="stylesheet" href="/plugins/timepicker/bootstrap-timepicker.min.css">
+
+
+    <link rel="stylesheet" href="/plugins/iCheck/all.css">
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="/bower_components/dataTables.select.css">
+    <link rel="stylesheet" href="/bower_components/dataTables.buttonSelect.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+    <!-- Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+
+<!-- Header Navbar: style can be found in header.less -->
+<% include ./main-navigation.ejs%>
+</header>
+<!-- Left side column. contains the logo and sidebar -->
+<% include ./main-sidebar.ejs %>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Tra cứu thông tin
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Tables</a></li>
+            <li class="active">Data tables</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+
+    <!-- Main content -->
+    <section class="content">
+        <!-- left column -->
+        <div class="box box-primary">
+            <div class="box-header">
+                <h3 class="box-title">Thông tin tàu</h3>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label for="txtSoDangKy">Số đăng ký</label>
+                        <input type="text" class="form-control" id="txtSoDangKy" name="txtSoDangKy">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="txtChuPhuongTien">Chủ phương tiện</label>
+                        <input type="text" class="form-control" id="txtChuPhuongTien" name="txtChuPhuongTien">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="txtSoDangKy">Tỉnh/thành phố</label>
+                        <select name="tinh" id="tinh" class="form-control" required>
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="txtChuPhuongTien">Huyện/quận</label>
+                        <select name="huyen" id="huyen" class="form-control" required>
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="txtChuPhuongTien">Xã/phường</label>
+                        <select name="xa" id="xa" class="form-control" required>
+                            <option value=""></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label for="txtCongDung">Công dụng tàu cá</label>
+                        <select class="form-control" name="txtCongDungTau">
+                            <option></option>
+                            <option>Khai thác thuỷ sản</option>
+                            <option>Hậu cần dịch vụ</option>
+                            <option>Kiểm ngư</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="txtNhomTau">Nhóm tàu</label>
+                        <select class="form-control" name="txtNhomTau">
+                            <option value=""></option>
+                            <option value="1">Công suất nhỏ hơn 20cv</option>
+                            <option value="2">Công suất từ 20cv - nhỏ hơn 50cv</option>
+                            <option value="3">Công suất từ 50cv - nhỏ hơn 90cv</option>
+                            <option value="4">Công suất từ 90cv - nhỏ hơn 250cv</option>
+                            <option value="5">Công suất từ 250cv - nhỏ hơn 400cv</option>
+                            <option value="6">Công suất từ 400cv - nhỏ hơn 1000cv</option>
+                            <option value="7">Công suất từ 1000 trở lên</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="txtTinhTrangTau">Tình trạng tàu</label>
+                        <select class="form-control" name="txtTinhTrangTau">
+                            <option value=""></option>
+                            <option value="1">Đóng mới</option>
+                            <option value="2">Mua lại</option>
+                            <option value="3">Giải bản</option>
+                            <option value="4">Bán sang tỉnh khác</option>
+                            <option value="5">Cải hoán</option>
+                            <option value="6">Sang tên đổi chủ / Mua bán trong tỉnh</option>
+                            <option value="7">Khác</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="txtNgheChinh">Nghề chính</label>
+                        <select class="form-control" name="txtNgheChinh">
+                            <option value=""></option>
+                            <option value="1">Kéo</option>
+                            <option value="2">Vây</option>
+                            <option value="3">Rê</option>
+                            <option value="4">Câu</option>
+                            <option value="5">Khác</option>
+                            <option value="6">Lưới chụp</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="txtNghePhu">Nghề phụ </label>
+                        <select class="form-control" name="txtNghePhu">
+                            <option value=""></option>
+                            <option value="1">Kéo</option>
+                            <option value="2">Vây</option>
+                            <option value="3">Rê</option>
+                            <option value="4">Câu</option>
+                            <option value="5">Khác</option>
+                            <option value="6">Lưới chụp</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label for="txtTinhTrangDangKiem">Tình trạng đăng kiểm</label>
+                        <select class="form-control" name="txtTinhTrangDangKiem">
+                            <option value=""></option>
+                            <option value="1">Thỏa mãn</option>
+                            <option value="2">Hạn chế</option>
+                            <option value="3">Cấm hoạt động</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-fw fa-bolt"></i>
+                                Công xuất từ
+                            </span>
+                            <input type="number" class="form-control">
+                        </div>
+                        <!-- /input-group -->
+                    </div>
+                    <!-- /.col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                đến
+                            </span>
+                            <input type="number" class="form-control">
+                        </div>
+                        <!-- /input-group -->
+                    </div>
+                    <!-- /.col-lg-6 -->
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-fw fa-calendar"></i>
+                                Ngày đăng kiểm từ
+                            </span>
+                            <input type="text" class="form-control datepicker" data-inputmask="'alias': 'dd/mm/yyyy'"
+                                data-mask />
+                        </div>
+                        <!-- /input-group -->
+                    </div>
+                    <!-- /.col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                đến
+                            </span>
+                            <input type="text" class="form-control datepicker" data-inputmask="'alias': 'dd/mm/yyyy'"
+                                data-mask>
+                        </div>
+                        <!-- /input-group -->
+                    </div>
+                    <!-- /.col-lg-6 -->
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-fw fa-arrows-h"></i>
+                                Chiều dài tàu từ
+                            </span>
+                            <input type="number" class="form-control">
+                        </div>
+                        <!-- /input-group -->
+                    </div>
+                    <!-- /.col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                đến
+                            </span>
+                            <input type="number" class="form-control">
+                        </div>
+                        <!-- /input-group -->
+                    </div>
+                    <!-- /.col-lg-6 -->
+                </div>
+            </div>
+            <div class="box-footer">
+                <button type="button" class="btn btn-primary pull-left">Tìm kiếm</button>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title col-md-3">Kết quả tra cứu</h3>
+                        <button type="button" class="btn btn-warning pull-right"><i class="fa fa-share-square-o"></i>
+                            Xuất excel</button>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="example1" class="table table-bordered table-striped" style="font-size:0.9em">
+                            <thead>
+                                <tr>
+                                    <td></td>
+                                    <th>Số đăng ký</th>
+                                    <th>Ngày đăng ký</th>
+                                    <th>Chủ phương tiện</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Tên tàu</th>
+                                    <th>Nghề</th>
+                                    <th>Công suất tàu<br />(KW)</th>
+                                    <th>Vật liệu vỏ</th>
+                                    <th>Tỉnh/TP </th>
+                                    <th>Chiều dài<br />lớn nhất </th>
+                                    <th>Chiều rộng<br />lớn nhất </th>
+                                    <th>Chiều cao<br />lớn nhất </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td>45454554</td>
+                                    <td>10/01/2019</td>
+                                    <td>134</td>
+                                    <td>14134</td>
+                                    <td></td>
+                                    <td>Kéo</td>
+                                    <td>100</td>
+                                    <td>Thép</td>
+                                    <td>Tỉnh Khánh Hòa</td>
+                                    <td>12.00</td>
+                                    <td>12.00</td>
+                                    <td>12.00</td>
+                                    <td>
+                                        <a type="button" class="btn btn-xs btn-primary" href="detail.html"> <i class="fa fa-eye"></i>
+                                            View</a>
+                                    </td>
+                                </tr>
+                                <% data.forEach(function(item){
+                                    %>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <%=item.SoDangKy%>
+                                    </td>
+                                    <td>
+                                        <%=item.NgayDangKy%>
+                                    </td>
+                                    <td>
+                                        <%=item.ChuPhuongTien%>
+                                    </td>
+                                    <td>
+                                        <%=item.KP + ", " + item.Xa +", "+ item.Huyen %>
+                                    </td>
+                                    <td>
+                                        <%=item.TenTau%>
+                                    </td>
+                                    <td>
+                                        <%=item.Nghe%>
+                                    </td>
+                                    <td>
+                                        <%=item.CongSuat%>
+                                    </td>
+                                    <td>
+                                        <%=item.VatLieuVo%>
+                                    </td>
+                                    <td>
+                                        <%=item.NoiDong%>
+                                    </td>
+                                    <td>
+                                        <%=item.L%>
+                                    </td>
+                                    <td>
+                                        <%=item.B%>
+                                    </td>
+                                    <td>
+                                        <%=item.D%>
+                                    </td>
+                                    <td>
+                                        <a type="button" class="btn btn-xs btn-primary" href="detail.html"> <i class="fa fa-eye"></i>
+                                            View</a>
+                                    </td>
+                                </tr>
+                                <%
+                                })%>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td></td>
+                                    <th>Số đăng ký</th>
+                                    <th>Ngày đăng ký</th>
+                                    <th>Chủ phương tiện</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Tên tàu</th>
+                                    <th>Nghề</th>
+                                    <th>Công suất tàu<br />(KW)</th>
+                                    <th>Vật liệu vỏ</th>
+                                    <th>Tỉnh/TP </th>
+                                    <th>Chiều dài<br />lớn nhất </th>
+                                    <th>Chiều rộng<br />lớn nhất </th>
+                                    <th>Chiều cao<br />lớn nhất </th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <% if (pages > 0) { %>
+                        <ul class="pagination text-center pull-right">
+                            <% if (current == 1) { %>
+                            <li class="disabled"><a>First</a></li>
+                            <% } else { %>
+                            <li><a href="/TraCuuThongTinTau/page=1">First</a></li>
+                            <% } %>
+                            <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                            <% if (i !== 1) { %>
+                            <li class="disabled"><a>...</a></li>
+                            <% } %>
+                            <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                            <% if (i == current) { %>
+                            <li class="active"><a>
+                                    <%= i %></a></li>
+                            <% } else { %>
+                            <li><a href="/TraCuuThongTinTau/page=<%= i %>">
+                                    <%= i %></a></li>
+                            <% } %>
+                            <% if (i == Number(current) + 4 && i < pages) { %>
+                            <li class="disabled"><a>...</a></li>
+                            <% } %>
+                            <% } %>
+                            <% if (current == pages) { %>
+                            <li class="disabled"><a>Last</a></li>
+                            <% } else { %>
+                            <li><a href="/TraCuuThongTinTau/page=<%= pages %>">Last</a></li>
+                            <% } %>
+                        </ul>
+                        <% } %>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+    </section>
+    <!-- /.content -->
+
+</div>
+<!-- /.content-wrapper -->
+<footer class="main-footer">
+    <div class="pull-right hidden-xs">
+        <b>Version</b> 2.4.0
+    </div>
+    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+    reserved.
+</footer>
+
+<!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+<div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="/bower_components/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="/dist/js/adminlte.min.js"></script>
+<!-- Select2 -->
+<script src="/bower_components/select2/dist/js/select2.full.min.js"></script>
+
+<script src="/plugins/input-mask/jquery.inputmask.js"></script>
+<script src="/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<!-- date-range-picker -->
+<script src="/bower_components/moment/min/moment.min.js"></script>
+
+<script src="/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap datepicker -->
+<script src="/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<!-- bootstrap time picker -->
+<script src="/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+
+
+<!-- AdminLTE for demo purposes -->
+<script src="/dist/js/demo.js"></script>
+
+<!-- DataTables -->
+<script src="/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="/bower_components/dataTables.select.min.js"></script>
+<script src="/bower_components/dataTables.buttonSelect.js"></script>
+
+<!-- SlimScroll -->
+<script src="/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+
+<!-- iCheck 1.0.1 -->
+<script src="/plugins/iCheck/icheck.min.js"></script>
+
+<script>
+    $(function () {
+
+        $('.select2').select2()
+
+        //Datemask dd/mm/yyyy
+        $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+
+        //Money Euro
+        $('[data-mask]').inputmask()
+
+
+        //Timepicker
+        $('.timepicker').timepicker({
+            showInputs: true,
+            showMeridian: false
+        })
+
+        //Date range picker
+        $('.reservation').daterangepicker(
+            {
+                locale: {
+                    format: 'DD/MM/YYYY'
+                }
+            }
+        )
+        //Date picker
+        $('.datepicker').datepicker({
+            autoclose: true,
+            format: 'dd/mm/yyyy'
+        });
+
+        $(".datepicker").datepicker('setDate', new Date());
+
+        //datatable
+        $('#example1').DataTable({
+            'paging': false,
+            'lengthChange': true,
+            'searching': false,
+            'ordering': false,
+            'info': false,
+            "pageLength": 25,
+            'autoWidth': false,
+            columnDefs: [{
+                orderable: true,
+                className: 'select-checkbox',
+                targets: 0
+            }],
+            select: {
+                style: 'multi',
+                selector: 'td:first-child'
+            },
+            dom: 'Bfrtip',
+            buttons: [
+                'selectAll',
+                'selectNone'
+            ]
+        })
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#huyen').prop('disabled', true);
+        $('#xa').prop('disabled', true);
+
+        _getAllTinh();
+        $('#tinh').on('change', function () {
+            if (this.value == '') {
+                $('#huyen').prop('disabled', true);
+                $('#xa').prop('disabled', true);
+            }
+            else {
+                $('#huyen').prop('disabled', false);
+                var id = $(this).val();
+                if (id != undefined && id != "") {
+                    _getHuyenByTinh(id);
+                }
+            }
+
+        });
+        $('#huyen').on('change', function () {
+            if (this.value == '') {
+                $('#xa').prop('disabled', true);
+            }
+            else {
+                $('#xa').prop('disabled', false);
+                var id = $(this).val();
+                if (id != undefined && id != "") {
+                    _getXaByHuyen(id);
+                }
+            }
+
+        });
+    });
+    function _getAllTinh() {
+        $.ajax({
+            type: "GET",
+            url: '/getAllTinhTP',
+            dataType: "json",
+            success: function (data) {
+                if (data != null && data != undefined && data.length) {
+                    var html = '';
+                    html += '<option value=""></option>';
+                    data.forEach(function (item) {
+                        html += '<option value=' + item.id + '>' + item.value + '</option>';
+                    })
+                    $("#tinh").html(html);
+                }
+            }
+        });
+    };
+    function _getHuyenByTinh(id) {
+        $.ajax({
+            type: "GET",
+            url: '/getAllHuyenByTinhID/' + id,
+            dataType: "json",
+            success: function (data) {
+                if (data != null && data != undefined && data.length) {
+                    var html = '';
+                    html += '<option value=""></option>';
+                    data.forEach(function (item) {
+                        html += '<option value=' + item.id + '>' + item.value + '</option>';
+                    });
+                    $("#huyen").html(html);
+                }
+            }
+        });
+
+    }
+    function _getXaByHuyen(id) {
+        $.ajax({
+            type: "GET",
+            url: '/getAllXaByHuyenID/' + id,
+            dataType: "json",
+            success: function (data) {
+                if (data != null && data != undefined && data.length) {
+                    var html = '';
+                    html += '<option value=""></option>';
+                    data.forEach(function (item) {
+                        html += '<option value=' + item.id + '>' + item.value + '</option>';
+                    });
+                    $("#xa").html(html);
+                }
+            }
+        });
+
+    }
+
+</script>
+</body>
+
+</html>
